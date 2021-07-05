@@ -1,67 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css">
-    <title>Scroll Slider</title>
-  </head>
-  <body>
-   <!--
-Sections animate in and out on scroll. Scroll up or down and the sections will wrap around after hitting the start or end. Uses GSAP for the animations.
--->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./homeStyle.css">
+</head>
+<body>
+    <section class="fst">
+        <div class='outer'>
+            <div class="contant ">
+                <h2 > <span class='header'>Your Bettity</span> </h2>
+                <div class="img">
+                   <div class="img_warpper">
+                        <img src='./images/pexels-allec-gomes-5675543.jpg'/>
+                        <div class="cover-img"></div>
+                   </div>  
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="sec">
+        <div class='outer'>
+            <div class="contant ">
+                <div class="img">
+                    <div class="img_warpper">
+                        <img src='./images/pexels-antonio-prado-5278913.jpg'/>
+                        <div class="cover-img"></div>
+                    </div>
+                </div>
+                <h2 ><span class='header'> Section 1</span> </h2>
+            </div>
+        </div>
+    </section>
+    <section  class="thi">
+        <div class='outer'>
+            <div class="contant ">
+                <h2 ><span class='header'> Section 2</span> </h2>
+            </div>
+        </div>
+    </section>
+    <section  class="four">
+        <div class='outer'>
+            <div class="contant ">
+                <h2 ><span class='header'> Section 3</span> </h2>
+            </div>
+        </div>
+    </section>
+</body>
+<script  type="module" src='./homeScript.js' ></script>
 
-<header>
-  <a href="./home.html">Clicking</a>
-  <div>Made By Brian</div>
-</header>
-<section class="first">
-  <div class="outer">
-    <div class="inner">
-      <div class="bg one">
-        <h2 class="section-heading">Scroll down</h2>
-      </div>
-    </div>
-  </div>
-
-</section>
-<section class="second">
-  <div class="outer">
-    <div class="inner">
-      <div class="bg">
-        <h2 class="section-heading">Animated with GSAP</h2>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="third">
-  <div class="outer">
-    <div class="inner">
-      <div class="bg">
-        <h2 class="section-heading">GreenSock</h2>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="fourth">
-  <div class="outer">
-    <div class="inner">
-      <div class="bg">
-        <h2 class="section-heading">Animation platform</h2>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="fifth">
-  <div class="outer">
-    <div class="inner">
-      <div class="bg">
-        <h2 class="section-heading">Keep scrolling</h2>
-      </div>
-    </div>
-  </div>
-</section>
-  </body>
-  <script type="module" src="/main.js"></script>
 </html>
