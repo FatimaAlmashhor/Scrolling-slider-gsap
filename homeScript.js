@@ -37,9 +37,12 @@ const fedeIn = () => {
     // console.log(coverImg[next]);
     if (current !== undefined) gsap.set(sections[current], { zIndex: 0 });
     gsap.set(sections[next], { autoAlpha: 1, zIndex: 1 });
-    // gsap.set(splitHeadings[next].chars, { autoAlpha: 0, yPercent: 100 });
-    gsap.set(header[current], { autoAlpha: 0, zIndex: 0 })
-    // gsap.set(coverImg[next], { yPercent: 90 })
+    gsap.set(header[next], { yPercent: 100 })
+    gsap.set(coverImg[next], { yPercent: 0 })
+
+    if (current == undefined) {
+        gsap.to(header[current], { yPercent: 100 }, 0)
+    }
     const tl = gsap
         .timeline({
             paused: true,
@@ -50,21 +53,18 @@ const fedeIn = () => {
             }
         })
         .to(outer[next], { yPercent: 0 }, 0)
-
-        .to(header[next], { autoAlpha: 1, zIndex: 1 }, 0)
-        // .from(coverImg[current], { duration: 2, yPercent: 100 }, 2)
-        .add(console.log('here the sec state', coverImg[next]))
+        .to(header[next], { duration: 1, yPercent: 0 }, 0.7)
+        .to(coverImg[next], { duration: 1, yPercent: 100 }, '<')
 
     if (current !== undefined) {
         tl.add(
             gsap
                 .timeline()
+                // .set(sections[current], { autoAlpha: 0 })
                 .set(outer[current], { yPercent: 100 })
-                .set(sections[current], { autoAlpha: 0 })
-                // .add(ImageAnimation(), 0)
-                // .set(coverImg[current], { yPercent: 100 }, 0)
-                .add(console.log('here the thir state ', coverImg[next]))
-            // .set(coverImg[current], { yPercent: 30 })
+                .set(header[current], { yPercent: 100 }, 1)
+                .set(coverImg[current], { yPercent: 0 }, '<')
+
         );
     }
 
@@ -76,9 +76,9 @@ const fedeOut = () => {
 
     gsap.set(sections[current], { zIndex: 1 });
     gsap.set(sections[next], { autoAlpha: 1, zIndex: 0 });
-    gsap.set(coverImg[next], { autoAlpha: 0, yPercent: 100 });
+    gsap.set(coverImg[next], { autoAlpha: 1, yPercent: 100 });
     gsap.set(outer[next], { yPercent: 0 });
-
+    gsap.set(header[next], { yPercent: 0 })
     gsap
         .timeline({
             defaults: tlDefaults,
@@ -87,8 +87,10 @@ const fedeOut = () => {
                 current = next;
             }
         })
-        .to(outer[current], { yPercent: 100 }, 0)
-        .add(ImageAnimation(), ">-1")
+        .to(header[current], { yPercent: 100 }, 0)
+        .to(coverImg[current], { autoAlpha: 1, yPercent: 0 }, 0)
+        .to(outer[current], { yPercent: 100 }, '>')
+    // .add(ImageAnimation(), ">-1")
 }
 
 const handleDirectionChange = () => {
