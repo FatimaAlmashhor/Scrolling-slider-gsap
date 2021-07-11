@@ -3,7 +3,9 @@ import gsap from 'gsap'
 const outer = gsap.utils.toArray('.outer');
 const sections = document.querySelectorAll('section')
 const header = gsap.utils.toArray('.header')
-const coverImg = document.querySelectorAll('.cover-img')
+const sliderItem = gsap.utils.toArray('.slider__item')
+const secondImg = gsap.utils.toArray('.second-bg-img')
+const coverImg = document.querySelectorAll('.slidIn-limg')
 
 let
     current,
@@ -39,6 +41,7 @@ const fedeIn = () => {
     gsap.set(sections[next], { autoAlpha: 1, zIndex: 1 });
     gsap.set(header[next], { yPercent: 100 })
     gsap.set(coverImg[next], { yPercent: 0 })
+    gsap.set(secondImg[next], { height: 0 })
 
     if (current == undefined) {
         gsap.to(header[current], { yPercent: 100 }, 0)
@@ -54,7 +57,8 @@ const fedeIn = () => {
         })
         .to(outer[next], { yPercent: 0 }, 0)
         .to(header[next], { duration: 1, yPercent: 0 }, 0.7)
-        .to(coverImg[next], { duration: 1, yPercent: 100 }, '<')
+        .to(secondImg[next], { duration: 1, height: 400 }, '<')
+        .to(coverImg[next], { duration: 1, yPercent: 100 }, '+=0.2')
 
     if (current !== undefined) {
         tl.add(
@@ -99,12 +103,16 @@ const handleDirectionChange = () => {
         next = current + 1;
         if (next >= sections.length)
             next = 0;
+        sliderItem[current].classList.remove('active')
+        sliderItem[next].classList.add('active')
         fedeIn()
     }
     else if (direction == 'up') {
         next = current - 1;
         if (next < 0)
             next = sections.length - 1;
+        sliderItem[current].classList.remove('active')
+        sliderItem[next].classList.add('active')
         fedeOut()
     }
 }
@@ -114,5 +122,11 @@ const handleWheel = (e) => {
     direction = e.wheelDeltaY < 0 ? "down" : "up";
     handleDirectionChange();
 }
+function handleClickNavItems(itemNu) {
+    console.log('you are clicking');
+    current = itemNu;
+    handleDirectionChange()
+}
 document.addEventListener("wheel", handleWheel);
+// sliderItem.addEventListener('click', handleClickNavItems)
 fedeIn()
